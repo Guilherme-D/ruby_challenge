@@ -54,3 +54,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rspec'
 gem 'guard-rspec', require: false
+gem 'byebug'
+gem 'icalendar'
