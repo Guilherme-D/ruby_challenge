@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To execute the code, run the following commands below:
 
-Things you may want to cover:
+* gem install bundler
 
-* Ruby version
+* bundle install
 
-* System dependencies
+* rails s
 
-* Configuration
+Once the project is running access:
 
-* Database creation
+* http://localhost:3000 to download the file with all absences
 
-* Database initialization
+* http://localhost:3000?userId=123 to download the file with basences of a user by id
 
-* How to run the test suite
+* http://localhost:3000?startDate=2017-01-01&endDate=2017-02-01 to download the file with absences in the given date range
 
-* Services (job queues, cache servers, search engines, etc.)
+To run the tests execute the command:
 
-* Deployment instructions
-
-* ...
+* bundle exec rspec
