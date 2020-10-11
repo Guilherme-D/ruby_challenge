@@ -1,13 +1,46 @@
 require_relative './api'
+require 'icalendar'
 
 module CmChallenge
   class Absences
-    def to_ical
-      
+
+    #initialize with sended params
+    def initialize params={}
+
       #Get all absences and members using the api
       @absences = CmChallenge::Api.absences
       @members = CmChallenge::Api.members 
 
+      # is received a parameter, check which one is 
+      # and select the proper absence and members 
+      if params["userId"].present?
+        @absences = @absences.select{
+          |absence| absence[:user_id] == params["userId"].to_i
+        }
+        @members = @members.select{
+          |member| member[:user_id] == params["userId"].to_i
+        }
+      end
+
+      if params["startDate"].present?
+        @absences = @absences.select{
+          |absence| absence[:start_date] == params["userId"].to_i
+        }
+      end
+
+      if params["endDate"].present?
+        @absences = @absences.select{
+          |absence| absence[:endDate] == params["userId"].to_i
+        }
+      end
+      
+    end
+
+    def to_ical
+
+      #Get all absences and members using the api
+      @absences = CmChallenge::Api.absences
+      @members = CmChallenge::Api.members 
       #create a new icalendar object
       cal = Icalendar::Calendar.new
 
