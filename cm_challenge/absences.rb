@@ -10,7 +10,7 @@ module CmChallenge
       #Get all absences and members using the api
       @absences = CmChallenge::Api.absences
       @members = CmChallenge::Api.members 
-byebug
+      
       # is received a parameter, check which one is 
       # and select the proper absence and members 
       if params["userId"].present?
@@ -27,10 +27,7 @@ byebug
         @absences = @absences.select{
           |absence| ((DateTime.parse(absence[:start_date]) >= DateTime.parse(params["startDate"])) and (DateTime.parse(absence[:end_date]) <= DateTime.parse(params["endDate"])))
         }
-      end
-
-      
-      
+      end      
     end
 
     def to_ical
