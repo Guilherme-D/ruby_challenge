@@ -24,23 +24,20 @@ module CmChallenge
 
       if params["startDate"].present?
         @absences = @absences.select{
-          |absence| absence[:start_date] == params["userId"].to_i
+          |absence| absence[:start_date] == params["startDate"].to_i
         }
       end
 
       if params["endDate"].present?
         @absences = @absences.select{
-          |absence| absence[:endDate] == params["userId"].to_i
+          |absence| absence[:endDate] == params["startDate"].to_i
         }
       end
       
     end
 
     def to_ical
-
-      #Get all absences and members using the api
-      @absences = CmChallenge::Api.absences
-      @members = CmChallenge::Api.members 
+      
       #create a new icalendar object
       cal = Icalendar::Calendar.new
 
